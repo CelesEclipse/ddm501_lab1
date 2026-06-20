@@ -25,7 +25,7 @@ def test_predict_valid():
     assert 0.0 <= body["confidence"] <= 1.0
 
 def test_predict_invalid_type():
-# send text instead of a number -> must be rejected with 422
+    # send text instead of a number -> must be rejected with 422
     r = client.post("/predict", json={"sepal_length": "abc"})
     assert r.status_code == 422
     

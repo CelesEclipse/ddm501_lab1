@@ -33,6 +33,6 @@ def predict(features: IrisFeatures):
     pred_idx = int(model.predict(X)[0])
     proba = model.predict_proba(X)[0]
     return {
-    "prediction": CLASS_NAMES[pred_idx],
-    "confidence": round(float(max(proba)), 4)
+        "prediction": CLASS_NAMES[pred_idx],
+        "confidence": round(float(max(proba)), 4)
     }
