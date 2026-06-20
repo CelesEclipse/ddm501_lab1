@@ -4,7 +4,7 @@
 
 Below is the directory layout of the project:
 
-\`\`\`text
+```text
 first-ml-product/
 ├── app/
 │   ├── __init__.py
@@ -23,7 +23,7 @@ first-ml-product/
 ├── .dockerignore
 ├── pytest.ini              # Optional config
 └── README.md
-\`\`\`
+```
 
 ## Prerequisites
 
@@ -35,40 +35,40 @@ Make sure the following software are installed:
 ## Local Installation & Setup
 
 ### 1. Clone the Repository
-\`\`\`bash
+```bash
 git clone <github-repo>
 cd first-ml-product
-\`\`\`
+```
 
 ### 2. Create and Activate a Virtual Environment
 - **Windows (PowerShell):**
-  \`\`\`powershell
+  ```powershell
   python -m venv venv
   .\venv\Scripts\Activate.ps1
-  \`\`\`
+  ```
 - **macOS / Linux:**
-  \`\`\`bash
+  ```bash
   python -m venv venv
   source venv/bin/activate
-  \`\`\`
+  ```
 
 ### 3. Install Dependencies
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
 
 ### 4. Train the ML Model
 Run the training script to evaluate the Iris dataset and generate the serialized model artifact (`model.joblib`):
-\`\`\`bash
+```bash
 python train.py
-\`\`\`
+```
 *Expected output in log:* `Test accuracy: 1.000` and `Saved model to model.joblib`
 
 ### 5. Run the FastAPI Server Locally
 Start the local Uvicorn development web server:
-\`\`\`bash
+```bash
 uvicorn app.main:app --reload --port 8000
-\`\`\`
+```
 Access the local service home at: [http://localhost:8000](http://localhost:8000)
 
 ## Containerization with Docker
@@ -77,26 +77,26 @@ To isolate the runtime environment and guarantee the production-ready applicatio
 
 ### Start the Application
 Run the service in the background (detached mode) and force a rebuild:
-\`\`\`bash
+```bash
 docker compose up --build -d
-\`\`\`
+```
 
 ### Verify Service Health Status
 Check if the application container passes the custom HTTP healthcheck endpoint (`/health`):
-\`\`\`bash
+```bash
 docker compose ps
-\`\`\`
+```
 *The `STATUS` column should display `(healthy)` after a few seconds.*
 
 ### View Container Logs
-\`\`\`bash
+```bash
 docker compose logs -f
-\`\`\`
+```
 
 ### Stop the Application
-\`\`\`bash
+```bash
 docker compose down
-\`\`\`
+```
 
 ## API Endpoints & Usage
 
@@ -115,7 +115,7 @@ FastAPI automatically generates live, interactive documentation. Open your brows
 Automated testing is handled via `pytest`. We utilize a custom `pytest.ini` configuration file to seamlessly inject the root directory (`.`) into the `PYTHONPATH`, resolving module importing pathways across all operating systems (`Module not found 'app'` error when working on Windows)
 
 To run the automated test suite locally within your activated virtual environment:
-\`\`\`bash
+```bash
 pytest -v
-\`\`\`
+```
 *Expected result:* 4 test cases passed successfully (`test_root`, `test_health`, `test_predict_valid`, `test_predict_invalid_type`).
